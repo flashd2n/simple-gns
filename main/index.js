@@ -1,25 +1,27 @@
+const gnsWebConfig = {
+    focusPlatformOnDefaultClick: (data) => true,
+    providers: [
+        {
+            type: "stomp",
+            url: "http://localhost:8084/",
+            // authorization: () => {
+            //     return new Promise((resolve) => {
+            //         setTimeout(() => {
+            //             resolve("U000001");
+            //         }, 1000);
+            //     })
+            // }
+            recipient: "u000001"
+        }
+    ]
+};
+
 const plugins = {
     definitions: [
         {
             name: "gns.web",
             start: window.GNSWeb,
-            config: {
-                focusPlatformOnDefaultClick: (data) => true,
-                providers: [
-                    {
-                        type: "stomp",
-                        url: "http://localhost:8084/",
-                        // authorization: () => {
-                        //     return new Promise((resolve) => {
-                        //         setTimeout(() => {
-                        //             resolve("U000001");
-                        //         }, 1000);
-                        //     })
-                        // }
-                        recipient: "u000001"
-                    }
-                ]
-            }
+            config: gnsWebConfig
         }
     ]
 };
@@ -42,6 +44,11 @@ const config = {
 GlueWebPlatform(config)
     .then((data) => {
         window.glue = data.glue;
+
+        if (window.glue42gd) {
+            return window.GNSWeb(data.glue, gnsWebConfig)
+        }
+
     })
     .then(() => console.log("done"))
     .catch(console.warn);

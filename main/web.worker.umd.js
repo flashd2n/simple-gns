@@ -2,7 +2,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.web = global.web || {}, global.web.worker = {})));
-}(this, (function (exports) { 'use strict';
+})(this, (function (exports) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -29,11 +29,39 @@
         });
     }
 
-    const serviceWorkerBroadcastChannelName = "glue42-core-worker";
-    const platformPingTimeoutMS = 3000;
-    const platformOpenTimeoutMS = 60000;
-    const dbName = "glue42core";
-    const dbVersion = 2;
+    function __generator(thisArg, body) {
+        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f) throw new TypeError("Generator is already executing.");
+            while (_) try {
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (y = 0, t) op = [op[0] & 2, t.value];
+                switch (op[0]) {
+                    case 0: case 1: t = op; break;
+                    case 4: _.label++; return { value: op[1], done: false };
+                    case 5: _.label++; y = op[1]; op = [0]; continue;
+                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                    default:
+                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                        if (t[2]) _.ops.pop();
+                        _.trys.pop(); continue;
+                }
+                op = body.call(thisArg, _);
+            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    }
+
+    var serviceWorkerBroadcastChannelName = "glue42-core-worker";
+    var platformPingTimeoutMS = 3000;
+    var platformOpenTimeoutMS = 60000;
+    var dbName = "glue42core";
+    var dbVersion = 2;
 
     /**
      * Wraps values in an `Ok` type.
@@ -42,19 +70,11 @@
      */
     var ok = function (result) { return ({ ok: true, result: result }); };
     /**
-     * Typeguard for `Ok`.
-     */
-    var isOk = function (r) { return r.ok === true; };
-    /**
      * Wraps errors in an `Err` type.
      *
      * Example: `err('on fire') // => {ok: false, error: 'on fire'}`
      */
     var err = function (error) { return ({ ok: false, error: error }); };
-    /**
-     * Typeguard for `Err`.
-     */
-    var isErr = function (r) { return r.ok === false; };
     /**
      * Create a `Promise` that either resolves with the result of `Ok` or rejects
      * with the error of `Err`.
@@ -101,12 +121,6 @@
         }
     };
     /**
-     * Given an array of `Result`s, return the successful values.
-     */
-    var successes = function (results) {
-        return results.reduce(function (acc, r) { return (r.ok === true ? acc.concat(r.result) : acc); }, []);
-    };
-    /**
      * Apply `f` to the result of an `Ok`, or pass the error through.
      */
     var map = function (f, r) {
@@ -136,22 +150,6 @@
     var andThen = function (f, r) {
         return r.ok === true ? f(r.result) : r;
     };
-
-
-    Object.freeze({
-    	ok: ok,
-    	isOk: isOk,
-    	err: err,
-    	isErr: isErr,
-    	asPromise: asPromise,
-    	withDefault: withDefault,
-    	withException: withException,
-    	successes: successes,
-    	map: map,
-    	map2: map2,
-    	mapError: mapError,
-    	andThen: andThen
-    });
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -809,374 +807,80 @@
     /* tslint:disable:variable-name */
     /** See `Decoder.string` */
     var string = Decoder.string;
+    /** See `Decoder.number` */
+    Decoder.number;
     /** See `Decoder.boolean` */
     var boolean = Decoder.boolean;
     /** See `Decoder.anyJson` */
     var anyJson = Decoder.anyJson;
+    /** See `Decoder.unknownJson` */
+    Decoder.unknownJson;
+    /** See `Decoder.constant` */
+    Decoder.constant;
     /** See `Decoder.object` */
     var object = Decoder.object;
     /** See `Decoder.array` */
     var array = Decoder.array;
+    /** See `Decoder.tuple` */
+    Decoder.tuple;
+    /** See `Decoder.dict` */
+    Decoder.dict;
     /** See `Decoder.optional` */
     var optional = Decoder.optional;
+    /** See `Decoder.oneOf` */
+    Decoder.oneOf;
+    /** See `Decoder.union` */
+    Decoder.union;
+    /** See `Decoder.intersection` */
+    Decoder.intersection;
+    /** See `Decoder.withDefault` */
+    Decoder.withDefault;
+    /** See `Decoder.valueAt` */
+    Decoder.valueAt;
+    /** See `Decoder.succeed` */
+    Decoder.succeed;
     /** See `Decoder.fail` */
     var fail = Decoder.fail;
+    /** See `Decoder.lazy` */
+    Decoder.lazy;
 
-    const nonEmptyStringDecoder = string().where((s) => s.length > 0, "Expected a non-empty string");
-    const functionCheck = (input, propDescription) => {
-        const providedType = typeof input;
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    var nonEmptyStringDecoder = string().where(function (s) { return s.length > 0; }, "Expected a non-empty string");
+    var functionCheck = function (input, propDescription) {
+        var providedType = typeof input;
         return providedType === "function" ?
             anyJson() :
-            fail(`The provided argument as ${propDescription} should be of type function, provided: ${typeof providedType}`);
+            fail("The provided argument as ".concat(propDescription, " should be of type function, provided: ").concat(typeof providedType));
     };
-    const glue42NotificationClickHandlerDecoder = object({
+    var glue42NotificationClickHandlerDecoder = object({
         action: nonEmptyStringDecoder,
-        handler: anyJson().andThen((result) => functionCheck(result, "handler"))
+        handler: anyJson().andThen(function (result) { return functionCheck(result, "handler"); })
     });
-    const webWorkerConfigDecoder = object({
+    var webWorkerConfigDecoder = object({
         platform: optional(object({
             url: optional(nonEmptyStringDecoder),
             openIfMissing: optional(boolean())
         })),
         notifications: optional(object({
-            defaultClick: optional(anyJson().andThen((result) => functionCheck(result, "defaultClick"))),
+            defaultClick: optional(anyJson().andThen(function (result) { return functionCheck(result, "defaultClick"); })),
             actionClicks: optional(array(glue42NotificationClickHandlerDecoder))
         }))
     });
 
-    var lib = {exports: {}};
-
-    // Found this seed-based random generator somewhere
-    // Based on The Central Randomizer 1.3 (C) 1997 by Paul Houle (houle@msc.cornell.edu)
-
-    var seed = 1;
-
-    /**
-     * return a random number based on a seed
-     * @param seed
-     * @returns {number}
-     */
-    function getNextValue() {
-        seed = (seed * 9301 + 49297) % 233280;
-        return seed/(233280.0);
-    }
-
-    function setSeed$1(_seed_) {
-        seed = _seed_;
-    }
-
-    var randomFromSeed$1 = {
-        nextValue: getNextValue,
-        seed: setSeed$1
-    };
-
-    var randomFromSeed = randomFromSeed$1;
-
-    var ORIGINAL = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
-    var alphabet$2;
-    var previousSeed;
-
-    var shuffled;
-
-    function reset() {
-        shuffled = false;
-    }
-
-    function setCharacters(_alphabet_) {
-        if (!_alphabet_) {
-            if (alphabet$2 !== ORIGINAL) {
-                alphabet$2 = ORIGINAL;
-                reset();
-            }
-            return;
-        }
-
-        if (_alphabet_ === alphabet$2) {
-            return;
-        }
-
-        if (_alphabet_.length !== ORIGINAL.length) {
-            throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. You submitted ' + _alphabet_.length + ' characters: ' + _alphabet_);
-        }
-
-        var unique = _alphabet_.split('').filter(function(item, ind, arr){
-           return ind !== arr.lastIndexOf(item);
-        });
-
-        if (unique.length) {
-            throw new Error('Custom alphabet for shortid must be ' + ORIGINAL.length + ' unique characters. These characters were not unique: ' + unique.join(', '));
-        }
-
-        alphabet$2 = _alphabet_;
-        reset();
-    }
-
-    function characters(_alphabet_) {
-        setCharacters(_alphabet_);
-        return alphabet$2;
-    }
-
-    function setSeed(seed) {
-        randomFromSeed.seed(seed);
-        if (previousSeed !== seed) {
-            reset();
-            previousSeed = seed;
-        }
-    }
-
-    function shuffle() {
-        if (!alphabet$2) {
-            setCharacters(ORIGINAL);
-        }
-
-        var sourceArray = alphabet$2.split('');
-        var targetArray = [];
-        var r = randomFromSeed.nextValue();
-        var characterIndex;
-
-        while (sourceArray.length > 0) {
-            r = randomFromSeed.nextValue();
-            characterIndex = Math.floor(r * sourceArray.length);
-            targetArray.push(sourceArray.splice(characterIndex, 1)[0]);
-        }
-        return targetArray.join('');
-    }
-
-    function getShuffled() {
-        if (shuffled) {
-            return shuffled;
-        }
-        shuffled = shuffle();
-        return shuffled;
-    }
-
-    /**
-     * lookup shuffled letter
-     * @param index
-     * @returns {string}
-     */
-    function lookup(index) {
-        var alphabetShuffled = getShuffled();
-        return alphabetShuffled[index];
-    }
-
-    function get () {
-      return alphabet$2 || ORIGINAL;
-    }
-
-    var alphabet_1 = {
-        get: get,
-        characters: characters,
-        seed: setSeed,
-        lookup: lookup,
-        shuffled: getShuffled
-    };
-
-    var crypto = typeof window === 'object' && (window.crypto || window.msCrypto); // IE 11 uses window.msCrypto
-
-    var randomByte;
-
-    if (!crypto || !crypto.getRandomValues) {
-        randomByte = function(size) {
-            var bytes = [];
-            for (var i = 0; i < size; i++) {
-                bytes.push(Math.floor(Math.random() * 256));
-            }
-            return bytes;
-        };
-    } else {
-        randomByte = function(size) {
-            return crypto.getRandomValues(new Uint8Array(size));
-        };
-    }
-
-    var randomByteBrowser = randomByte;
-
-    // This file replaces `format.js` in bundlers like webpack or Rollup,
-    // according to `browser` config in `package.json`.
-
-    var format_browser = function (random, alphabet, size) {
-      // We can’t use bytes bigger than the alphabet. To make bytes values closer
-      // to the alphabet, we apply bitmask on them. We look for the closest
-      // `2 ** x - 1` number, which will be bigger than alphabet size. If we have
-      // 30 symbols in the alphabet, we will take 31 (00011111).
-      // We do not use faster Math.clz32, because it is not available in browsers.
-      var mask = (2 << Math.log(alphabet.length - 1) / Math.LN2) - 1;
-      // Bitmask is not a perfect solution (in our example it will pass 31 bytes,
-      // which is bigger than the alphabet). As a result, we will need more bytes,
-      // than ID size, because we will refuse bytes bigger than the alphabet.
-
-      // Every hardware random generator call is costly,
-      // because we need to wait for entropy collection. This is why often it will
-      // be faster to ask for few extra bytes in advance, to avoid additional calls.
-
-      // Here we calculate how many random bytes should we call in advance.
-      // It depends on ID length, mask / alphabet size and magic number 1.6
-      // (which was selected according benchmarks).
-
-      // -~f => Math.ceil(f) if n is float number
-      // -~i => i + 1 if n is integer number
-      var step = -~(1.6 * mask * size / alphabet.length);
-      var id = '';
-
-      while (true) {
-        var bytes = random(step);
-        // Compact alternative for `for (var i = 0; i < step; i++)`
-        var i = step;
-        while (i--) {
-          // If random byte is bigger than alphabet even after bitmask,
-          // we refuse it by `|| ''`.
-          id += alphabet[bytes[i] & mask] || '';
-          // More compact than `id.length + 1 === size`
-          if (id.length === +size) return id
-        }
-      }
-    };
-
-    var alphabet$1 = alphabet_1;
-    var random = randomByteBrowser;
-    var format = format_browser;
-
-    function generate$1(number) {
-        var loopCounter = 0;
-        var done;
-
-        var str = '';
-
-        while (!done) {
-            str = str + format(random, alphabet$1.get(), 1);
-            done = number < (Math.pow(16, loopCounter + 1 ) );
-            loopCounter++;
-        }
-        return str;
-    }
-
-    var generate_1 = generate$1;
-
-    var generate = generate_1;
-
-    // Ignore all milliseconds before a certain time to reduce the size of the date entropy without sacrificing uniqueness.
-    // This number should be updated every year or so to keep the generated id short.
-    // To regenerate `new Date() - 0` and bump the version. Always bump the version!
-    var REDUCE_TIME = 1567752802062;
-
-    // don't change unless we change the algos or REDUCE_TIME
-    // must be an integer and less than 16
-    var version = 7;
-
-    // Counter is used when shortid is called multiple times in one second.
-    var counter;
-
-    // Remember the last time shortid was called in case counter is needed.
-    var previousSeconds;
-
-    /**
-     * Generate unique id
-     * Returns string id
-     */
-    function build(clusterWorkerId) {
-        var str = '';
-
-        var seconds = Math.floor((Date.now() - REDUCE_TIME) * 0.001);
-
-        if (seconds === previousSeconds) {
-            counter++;
+    let nanoid = (size = 21) =>
+      crypto.getRandomValues(new Uint8Array(size)).reduce((id, byte) => {
+        byte &= 63;
+        if (byte < 36) {
+          id += byte.toString(36);
+        } else if (byte < 62) {
+          id += (byte - 26).toString(36).toUpperCase();
+        } else if (byte > 62) {
+          id += '-';
         } else {
-            counter = 0;
-            previousSeconds = seconds;
+          id += '_';
         }
-
-        str = str + generate(version);
-        str = str + generate(clusterWorkerId);
-        if (counter > 0) {
-            str = str + generate(counter);
-        }
-        str = str + generate(seconds);
-        return str;
-    }
-
-    var build_1 = build;
-
-    var alphabet = alphabet_1;
-
-    function isShortId(id) {
-        if (!id || typeof id !== 'string' || id.length < 6 ) {
-            return false;
-        }
-
-        var nonAlphabetic = new RegExp('[^' +
-          alphabet.get().replace(/[|\\{}()[\]^$+*?.-]/g, '\\$&') +
-        ']');
-        return !nonAlphabetic.test(id);
-    }
-
-    var isValid = isShortId;
-
-    (function (module) {
-
-    var alphabet = alphabet_1;
-    var build = build_1;
-    var isValid$1 = isValid;
-
-    // if you are using cluster or multiple servers use this to make each instance
-    // has a unique value for worker
-    // Note: I don't know if this is automatically set when using third
-    // party cluster solutions such as pm2.
-    var clusterWorkerId = 0;
-
-    /**
-     * Set the seed.
-     * Highly recommended if you don't want people to try to figure out your id schema.
-     * exposed as shortid.seed(int)
-     * @param seed Integer value to seed the random alphabet.  ALWAYS USE THE SAME SEED or you might get overlaps.
-     */
-    function seed(seedValue) {
-        alphabet.seed(seedValue);
-        return module.exports;
-    }
-
-    /**
-     * Set the cluster worker or machine id
-     * exposed as shortid.worker(int)
-     * @param workerId worker must be positive integer.  Number less than 16 is recommended.
-     * returns shortid module so it can be chained.
-     */
-    function worker(workerId) {
-        clusterWorkerId = workerId;
-        return module.exports;
-    }
-
-    /**
-     *
-     * sets new characters to use in the alphabet
-     * returns the shuffled alphabet
-     */
-    function characters(newCharacters) {
-        if (newCharacters !== undefined) {
-            alphabet.characters(newCharacters);
-        }
-
-        return alphabet.shuffled();
-    }
-
-    /**
-     * Generate unique id
-     * Returns string id
-     */
-    function generate() {
-      return build(clusterWorkerId);
-    }
-
-    // Export all other functions as properties of the generate function
-    module.exports = generate;
-    module.exports.generate = generate;
-    module.exports.seed = seed;
-    module.exports.worker = worker;
-    module.exports.characters = characters;
-    module.exports.isValid = isValid$1;
-    }(lib));
-
-    var shortid = lib.exports;
+        return id
+      }, '');
 
     const instanceOfAny = (object, constructors) => constructors.some((c) => object instanceof c);
 
@@ -1374,17 +1078,21 @@
         const openPromise = wrap(request);
         if (upgrade) {
             request.addEventListener('upgradeneeded', (event) => {
-                upgrade(wrap(request.result), event.oldVersion, event.newVersion, wrap(request.transaction));
+                upgrade(wrap(request.result), event.oldVersion, event.newVersion, wrap(request.transaction), event);
             });
         }
-        if (blocked)
-            request.addEventListener('blocked', () => blocked());
+        if (blocked) {
+            request.addEventListener('blocked', (event) => blocked(
+            // Casting due to https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1405
+            event.oldVersion, event.newVersion, event));
+        }
         openPromise
             .then((db) => {
             if (terminated)
                 db.addEventListener('close', () => terminated());
-            if (blocking)
-                db.addEventListener('versionchange', () => blocking());
+            if (blocking) {
+                db.addEventListener('versionchange', (event) => blocking(event.oldVersion, event.newVersion, event));
+            }
         })
             .catch(() => { });
         return openPromise;
@@ -1435,18 +1143,18 @@
         has: (target, prop) => !!getMethod(target, prop) || oldTraps.has(target, prop),
     }));
 
-    let openDbPromise;
-    const trimUrlQueryHashAndTrailingSlash = (url) => {
-        const trimmedQueryHash = url.split("?")[0].split("#")[0];
-        const trimmedTrailingSlash = trimmedQueryHash.replace(/\/$/, "");
+    var openDbPromise;
+    var trimUrlQueryHashAndTrailingSlash = function (url) {
+        var trimmedQueryHash = url.split("?")[0].split("#")[0];
+        var trimmedTrailingSlash = trimmedQueryHash.replace(/\/$/, "");
         return trimmedTrailingSlash;
     };
-    const startDb = () => {
+    var startDb = function () {
         if (openDbPromise) {
             return openDbPromise;
         }
         openDbPromise = openDB(dbName, dbVersion, {
-            upgrade: (db) => {
+            upgrade: function (db) {
                 if (!db.objectStoreNames.contains("workspaceLayouts")) {
                     db.createObjectStore("workspaceLayouts");
                 }
@@ -1460,11 +1168,12 @@
         });
         return openDbPromise;
     };
-    const checkPlatformOpen = () => {
-        const checkPromise = new Promise((resolve) => {
-            const channel = new BroadcastChannel(serviceWorkerBroadcastChannelName);
-            const existenceHandler = function (event) {
-                const data = event.data;
+    var checkPlatformOpen = function () {
+        var checkPromise = new Promise(function (resolve) {
+            var channel = new BroadcastChannel(serviceWorkerBroadcastChannelName);
+            var existenceHandler = function (event) {
+                var data = event.data;
+                // check to see if somehow I have reference to the client that answers
                 if (data.pong) {
                     channel.removeEventListener("message", existenceHandler);
                     resolve(true);
@@ -1473,131 +1182,164 @@
             channel.addEventListener("message", existenceHandler);
             channel.postMessage({ messageType: "ping" });
         });
-        const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve(false), platformPingTimeoutMS));
+        var timeoutPromise = new Promise(function (resolve) { return setTimeout(function () { return resolve(false); }, platformPingTimeoutMS); });
         return Promise.race([checkPromise, timeoutPromise]);
     };
-    const getPlatformUrl = (config) => __awaiter(void 0, void 0, void 0, function* () {
+    var getPlatformUrl = function (config) { return __awaiter(void 0, void 0, void 0, function () {
+        var url_1, db, workerData, url;
         var _a, _b;
-        if ((_a = config.platform) === null || _a === void 0 ? void 0 : _a.url) {
-            const url = config.platform.url.split("?")[0].split("#")[0];
-            console.log(`getting url from config: ${url}`);
-            return trimUrlQueryHashAndTrailingSlash(url);
-        }
-        console.log("starting the db");
-        const db = yield startDb();
-        if (!db.objectStoreNames.contains("serviceWorker")) {
-            console.warn("there is no service worker store");
-            return;
-        }
-        const workerData = yield db.get("serviceWorker", "workerData");
-        const url = (_b = workerData === null || workerData === void 0 ? void 0 : workerData.platformUrl) === null || _b === void 0 ? void 0 : _b.split("?")[0].split("#")[0];
-        return trimUrlQueryHashAndTrailingSlash(url);
-    });
-    const validateConfig = (config = {}) => {
+        return __generator(this, function (_c) {
+            switch (_c.label) {
+                case 0:
+                    if ((_a = config.platform) === null || _a === void 0 ? void 0 : _a.url) {
+                        url_1 = config.platform.url.split("?")[0].split("#")[0];
+                        console.debug("getting url from config: ".concat(url_1));
+                        return [2 /*return*/, trimUrlQueryHashAndTrailingSlash(url_1)];
+                    }
+                    console.debug("starting the db");
+                    return [4 /*yield*/, startDb()];
+                case 1:
+                    db = _c.sent();
+                    if (!db.objectStoreNames.contains("serviceWorker")) {
+                        console.warn("there is no service worker store");
+                        return [2 /*return*/];
+                    }
+                    return [4 /*yield*/, db.get("serviceWorker", "workerData")];
+                case 2:
+                    workerData = _c.sent();
+                    url = (_b = workerData === null || workerData === void 0 ? void 0 : workerData.platformUrl) === null || _b === void 0 ? void 0 : _b.split("?")[0].split("#")[0];
+                    return [2 /*return*/, trimUrlQueryHashAndTrailingSlash(url)];
+            }
+        });
+    }); };
+    var validateConfig = function (config) {
         var _a;
-        const validated = webWorkerConfigDecoder.runWithException(config);
+        if (config === void 0) { config = {}; }
+        var validated = webWorkerConfigDecoder.runWithException(config);
         if ((_a = validated.platform) === null || _a === void 0 ? void 0 : _a.url) {
             validated.platform.url = validated.platform.url.replace(/\/$/, "");
         }
         return validated;
     };
-    const raiseGlueNotification = (settings) => __awaiter(void 0, void 0, void 0, function* () {
-        var _c;
-        const options = Object.assign({}, settings, { title: undefined, clickInterop: undefined, actions: undefined });
-        options.actions = (_c = settings.actions) === null || _c === void 0 ? void 0 : _c.map((action) => {
-            return {
-                action: action.action,
-                title: action.title,
-                icon: action.icon
+    var raiseGlueNotification = function (settings) { return __awaiter(void 0, void 0, void 0, function () {
+        var options, glueData;
+        var _a;
+        return __generator(this, function (_b) {
+            options = Object.assign({}, settings, { title: undefined, clickInterop: undefined, actions: undefined });
+            options.actions = (_a = settings.actions) === null || _a === void 0 ? void 0 : _a.map(function (action) {
+                return {
+                    action: action.action,
+                    title: action.title,
+                    icon: action.icon
+                };
+            });
+            glueData = {
+                clickInterop: settings.clickInterop,
+                actions: settings.actions,
+                id: nanoid()
             };
+            if (options.data) {
+                options.data.glueData = glueData;
+            }
+            else {
+                options.data = { glueData: glueData };
+            }
+            return [2 /*return*/, self.registration.showNotification(settings.title, options)];
         });
-        const glueData = {
-            clickInterop: settings.clickInterop,
-            actions: settings.actions,
-            id: shortid.generate()
-        };
-        if (options.data) {
-            options.data.glueData = glueData;
-        }
-        else {
-            options.data = { glueData };
-        }
-        return self.registration.showNotification(settings.title, options);
-    });
-    const openCorePlatform = (url) => {
-        return new Promise((resolve, reject) => {
+    }); };
+    var openCorePlatform = function (url) {
+        return new Promise(function (resolve, reject) {
             if (!url) {
                 return reject("Cannot open the platform, because a url was not provided");
             }
-            const channel = new BroadcastChannel(serviceWorkerBroadcastChannelName);
-            const openHandler = function (event) {
-                const data = event.data;
+            var channel = new BroadcastChannel(serviceWorkerBroadcastChannelName);
+            var openHandler = function (event) {
+                var data = event.data;
                 if (data.platformStarted) {
                     channel.removeEventListener("message", openHandler);
                     resolve();
                 }
             };
             channel.addEventListener("message", openHandler);
-            self.clients.openWindow(url).catch(reject);
-            setTimeout(() => reject(`Timed out waiting for the platform to open and send a ready signal: ${platformOpenTimeoutMS} MS`), platformOpenTimeoutMS);
+            self.clients.openWindow(url)["catch"](reject);
+            setTimeout(function () { return reject("Timed out waiting for the platform to open and send a ready signal: ".concat(platformOpenTimeoutMS, " MS")); }, platformOpenTimeoutMS);
         });
     };
-    const focusCorePlatform = (url) => __awaiter(void 0, void 0, void 0, function* () {
-        if (!url) {
-            console.warn("Cannot open the platform, because a url was not provided");
-            return;
-        }
-        const allWindows = yield self.clients.matchAll({ type: "window" });
-        for (const client of allWindows) {
-            const urlStrippedQueryHash = client.url.split("?")[0].split("#")[0];
-            const urlStrippedTrailingSlash = urlStrippedQueryHash.replace(/\/$/, "");
-            if (urlStrippedTrailingSlash === url) {
-                yield client.focus();
-                return;
+    var focusCorePlatform = function (url) { return __awaiter(void 0, void 0, void 0, function () {
+        var allWindows, _i, allWindows_1, client, urlStrippedQueryHash, urlStrippedTrailingSlash;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    if (!url) {
+                        console.warn("Cannot open the platform, because a url was not provided");
+                        return [2 /*return*/];
+                    }
+                    return [4 /*yield*/, self.clients.matchAll({ type: "window" })];
+                case 1:
+                    allWindows = _a.sent();
+                    _i = 0, allWindows_1 = allWindows;
+                    _a.label = 2;
+                case 2:
+                    if (!(_i < allWindows_1.length)) return [3 /*break*/, 5];
+                    client = allWindows_1[_i];
+                    urlStrippedQueryHash = client.url.split("?")[0].split("#")[0];
+                    urlStrippedTrailingSlash = urlStrippedQueryHash.replace(/\/$/, "");
+                    if (!(urlStrippedTrailingSlash === url)) return [3 /*break*/, 4];
+                    return [4 /*yield*/, client.focus()];
+                case 3:
+                    _a.sent();
+                    return [2 /*return*/];
+                case 4:
+                    _i++;
+                    return [3 /*break*/, 2];
+                case 5: return [2 /*return*/];
             }
-        }
-    });
-    const setupCore = (config) => {
-        const verifiedConfig = validateConfig(config);
-        self.addEventListener("notificationclick", (event) => {
-            let isPlatformOpen;
-            let platformUrl;
-            const channel = new BroadcastChannel(serviceWorkerBroadcastChannelName);
-            const executionPromise = checkPlatformOpen()
-                .then((platformExists) => {
+        });
+    }); };
+    var setupCore = function (config) {
+        var verifiedConfig = validateConfig(config);
+        self.addEventListener("notificationclick", function (event) {
+            var isPlatformOpen;
+            var channel = new BroadcastChannel(serviceWorkerBroadcastChannelName);
+            console.debug("Received a notification, checking if the platform is open");
+            var executionPromise = checkPlatformOpen()
+                .then(function (platformExists) {
                 var _a, _b, _c;
                 isPlatformOpen = platformExists;
-                const action = event.action;
+                console.debug("The platform is: ".concat(isPlatformOpen ? "open" : "not open"));
+                var action = event.action;
                 if (!action && ((_a = verifiedConfig.notifications) === null || _a === void 0 ? void 0 : _a.defaultClick)) {
+                    console.debug("Calling a defined default click handler");
                     return verifiedConfig.notifications.defaultClick(event, isPlatformOpen);
                 }
-                if (action && ((_c = (_b = verifiedConfig.notifications) === null || _b === void 0 ? void 0 : _b.actionClicks) === null || _c === void 0 ? void 0 : _c.some((actionDef) => actionDef.action === action))) {
-                    const foundHandler = verifiedConfig.notifications.actionClicks.find((actionDef) => actionDef.action === action).handler;
+                if (action && ((_c = (_b = verifiedConfig.notifications) === null || _b === void 0 ? void 0 : _b.actionClicks) === null || _c === void 0 ? void 0 : _c.some(function (actionDef) { return actionDef.action === action; }))) {
+                    var foundHandler = verifiedConfig.notifications.actionClicks.find(function (actionDef) { return actionDef.action === action; }).handler;
+                    console.debug("Calling a defined action click handler for action: ".concat(action));
                     return foundHandler(event, isPlatformOpen);
                 }
             })
-                .then(() => {
+                .then(function () {
+                console.debug("Getting the platform url");
                 return getPlatformUrl(verifiedConfig);
             })
-                .then((url) => {
-                var _a;
-                platformUrl = url;
+                .then(function (url) {
+                var _a, _b, _c;
+                console.debug("Found platform url: ".concat(url));
                 if (!isPlatformOpen && ((_a = verifiedConfig.platform) === null || _a === void 0 ? void 0 : _a.openIfMissing)) {
-                    return openCorePlatform(platformUrl);
+                    console.debug("Opening the platform");
+                    return openCorePlatform(url);
                 }
-            })
-                .then(() => {
-                var _a, _b;
-                const focusOnClick = (_b = (_a = event.notification.data) === null || _a === void 0 ? void 0 : _a.glueData) === null || _b === void 0 ? void 0 : _b.focusPlatformOnDefaultClick;
+                var focusOnClick = (_c = (_b = event.notification.data) === null || _b === void 0 ? void 0 : _b.glueData) === null || _c === void 0 ? void 0 : _c.focusPlatformOnDefaultClick;
                 if (isPlatformOpen && focusOnClick) {
-                    return focusCorePlatform(platformUrl);
+                    console.debug("Focusing the platform");
+                    return focusCorePlatform(url);
                 }
             })
-                .then(() => {
-                const messageType = "notificationClick";
-                const action = event.action;
-                const glueData = event.notification.data.glueData;
-                const definition = {
+                .then(function () {
+                var messageType = "notificationClick";
+                var action = event.action;
+                var glueData = event.notification.data.glueData;
+                var definition = {
                     badge: event.notification.badge,
                     body: event.notification.body,
                     data: event.notification.data,
@@ -1612,16 +1354,51 @@
                     timestamp: event.notification.timestamp,
                     vibrate: event.notification.vibrate
                 };
-                channel.postMessage({ messageType, action, glueData, definition });
-            })
-                .catch((error) => {
-                const stringError = typeof error === "string" ? error : JSON.stringify(error.message);
+                channel.postMessage({ messageType: messageType, action: action, glueData: glueData, definition: definition });
+            })["catch"](function (error) {
+                var stringError = typeof error === "string" ? error : JSON.stringify(error.message);
+                channel.postMessage({ messageType: "notificationError", error: stringError });
+            });
+            event.waitUntil(executionPromise);
+        });
+        self.addEventListener("notificationclose", function (event) {
+            var channel = new BroadcastChannel(serviceWorkerBroadcastChannelName);
+            console.debug("Received a notification close event, checking if the platform is open");
+            var executionPromise = checkPlatformOpen()
+                .then(function (platformExists) {
+                console.debug("The platform is: ".concat(platformExists ? "open" : "not open"));
+                if (!platformExists) {
+                    console.log("The platform is not opened and will not open it for a notification close event");
+                    return;
+                }
+                var messageType = "notificationClose";
+                var action = event.action;
+                var glueData = event.notification.data.glueData;
+                var definition = {
+                    badge: event.notification.badge,
+                    body: event.notification.body,
+                    data: event.notification.data,
+                    dir: event.notification.dir,
+                    icon: event.notification.icon,
+                    image: event.notification.image,
+                    lang: event.notification.lang,
+                    renotify: event.notification.renotify,
+                    requireInteraction: event.notification.requireInteraction,
+                    silent: event.notification.silent,
+                    tag: event.notification.tag,
+                    timestamp: event.notification.timestamp,
+                    vibrate: event.notification.vibrate
+                };
+                channel.postMessage({ messageType: messageType, action: action, glueData: glueData, definition: definition });
+            })["catch"](function (error) {
+                var stringError = typeof error === "string" ? error : JSON.stringify(error.message);
                 channel.postMessage({ messageType: "notificationError", error: stringError });
             });
             event.waitUntil(executionPromise);
         });
     };
 
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     if (typeof self !== "undefined") {
         self.GlueWebWorker = setupCore;
         self.openCorePlatform = openCorePlatform;
@@ -1634,5 +1411,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=web.worker.umd.js.map
